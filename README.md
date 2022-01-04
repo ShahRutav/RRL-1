@@ -63,10 +63,16 @@
   ### Tasks
   Leveraging resnet features, RRL delivers natural human like behaviors trained directly form proprioceptive inputs. Presented below are behaviors acquired on ADROIT manipulation benchmark task suite rendered from the camera viewpoint. We also overlay the visual features (layer-4 of Resnet model of the top 1 class using GradCAM) to highlight the features RRL is attending to during the task execution. Even though standard image classification models aren't trained with robot images, we emphasize that the features they acquire, by training on large corpus of real world scenes, remain relevant for robotics tasks that are representative of real  world and rich in depth perspective (even in simulated scenes).
 
-  ![alt text](figures/door_result/resnet34-gradcam-layer4.gif)
-  ![alt text](figures/hammer_result/resnet34-gradcam-layer4.gif)
-  ![alt text](figures/pen_result/resnet34-gradcam-layer4.gif)
-  ![alt text](figures/relocate_result/resnet34-gradcam-layer4.gif)
+<table cellspacing="0" style="width:300px;height:300px;border:1px solid black;">
+   <tr>
+     <td style="text-align:center;">
+       <img align="center" alt="photogurus" src="figures/door_result/resnet34-gradcam-layer4.gif" width="216" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     <img align="center" alt="photogurus" src="figures/hammer_result/resnet34-gradcam-layer4.gif" width="216" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     <img align="center" alt="photogurus" src="figures/pen_result/resnet34-gradcam-layer4.gif" width="216" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     <img align="center" alt="photogurus" src="figures/relocate_result/resnet34-gradcam-layer4.gif" width="216" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     </td>
+   </tr>
+</table>
 
   ### Performance
 
