@@ -2,7 +2,43 @@
 <!-- Copyright (c) Facebook, Inc. and its affiliates -->
 # RRL: Resnet as representation for Reinforcement Learning
 ## Quick Links
-[Website](https://sites.google.com/view/abstractions4rl)   |   [Paper](https://arxiv.org/abs/2107.03380)   |   [Video](https://youtu.be/Yj1EHvGWmRA)
+[Website](https://sites.google.com/view/abstractions4rl)   |   [Paper](https://arxiv.org/abs/2107.03380)   |   [Video](https://youtu.be/Yj1EHvGWmRA) | [Getting Started](https://github.com/ShahRutav/RRL-1#setup)
+
+## Overview
+Representations do not necessarily have to be trained on the exact task distribution; a representation trained on a sufficiently wide distribution of real-world scenarios will be robust to scene variations, and will remain effective on any distribution a policy optimizing a 'task in the real world' might induce.
+
+![alt text](figures/overview.png)
+
+## Results
+
+  ### Tasks
+  Leveraging resnet features, RRL delivers natural human like behaviors trained directly form proprioceptive inputs. Presented below are behaviors acquired on ADROIT manipulation benchmark task suite rendered from the camera viewpoint. We also overlay the visual features (layer-4 of Resnet model of the top 1 class using GradCAM) to highlight the features RRL is attending to during the task execution. Even though standard image classification models aren't trained with robot images, we emphasize that the features they acquire, by training on large corpus of real world scenes, remain relevant for robotics tasks that are representative of real  world and rich in depth perspective (even in simulated scenes).
+
+<table cellspacing="0" style="width:300px;height:300px;border:1px solid black;">
+   <tr>
+     <td style="text-align:center;">
+       <img align="center" alt="photogurus" src="figures/door_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     <img align="center" alt="photogurus" src="figures/hammer_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     <img align="center" alt="photogurus" src="figures/pen_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     <img align="center" alt="photogurus" src="figures/relocate_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
+     </td>
+   </tr>
+</table>
+
+  ### Performance
+
+  Compared to baselines, which often fail and are sensitive to hyper-parameters, RRL demonstrates relatively stable and monotonic performance; often matching the efficiency of state based methods. We present comparisons with methods that learn directly from state (oracle) as well as ones that uses proprioceptive visual inputs.
+
+  ![alt text](figures/main_figure.png)
+
+  1. NPG(State) : State of the art policy gradient method struggles to solve the suite even with privileged low level state information, establishing the difficulty of the suite.
+
+  2. DAPG(State) : A demonstration accelerated method using privileged state information, can be considered as an oracle of our method.
+
+  3. RRL(Ours) : Demonstrates stable performance and approaches performance of DAPG(State).
+
+  4. FERM : A competing baseline; shows good initial, but unstable, progress in a few tasks and often saturates in performance before exhausting our computational budget (40 hours/ task/ seed).
+
 ## Setup
 `RRL` codebase can be installed by cloning this repository. Note that it uses git submodules to resolve dependencies. Please follow the steps as below to install correctly.
 
@@ -58,32 +94,3 @@
     ```
     python job_script.py  demo_file=<path-to-new-demo-file> --config-name relocate_dapg
     ```
-## Results
-
-  ### Tasks
-  Leveraging resnet features, RRL delivers natural human like behaviors trained directly form proprioceptive inputs. Presented below are behaviors acquired on ADROIT manipulation benchmark task suite rendered from the camera viewpoint. We also overlay the visual features (layer-4 of Resnet model of the top 1 class using GradCAM) to highlight the features RRL is attending to during the task execution. Even though standard image classification models aren't trained with robot images, we emphasize that the features they acquire, by training on large corpus of real world scenes, remain relevant for robotics tasks that are representative of real  world and rich in depth perspective (even in simulated scenes).
-
-<table cellspacing="0" style="width:300px;height:300px;border:1px solid black;">
-   <tr>
-     <td style="text-align:center;">
-       <img align="center" alt="photogurus" src="figures/door_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
-     <img align="center" alt="photogurus" src="figures/hammer_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
-     <img align="center" alt="photogurus" src="figures/pen_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
-     <img align="center" alt="photogurus" src="figures/relocate_result/resnet34-gradcam-layer4.gif" width="196" style="text-align:center;font-size: 11px;max-width: 76px;padding-bottom: 0;display: inline!important;vertical-align: bottom;border: 0;min-height: auto;outline: none;text-decoration: none;height: auto !important;-ms-interpolation-mode: bicubic;color:#fcbb2a;" class="CToWUd">
-     </td>
-   </tr>
-</table>
-
-  ### Performance
-
-  Compared to baselines, which often fail and are sensitive to hyper-parameters, RRL demonstrates relatively stable and monotonic performance; often matching the efficiency of state based methods. We present comparisons with methods that learn directly from state (oracle) as well as ones that uses proprioceptive visual inputs.
-
-  ![alt text](figures/main_figure.png)
-
-  1. NPG(State) : State of the art policy gradient method struggles to solve the suite even with privileged low level state information, establishing the difficulty of the suite.
-
-  2. DAPG(State) : A demonstration accelerated method using privileged state information, can be considered as an oracle of our method.
-
-  3. RRL(Ours) : Demonstrates stable performance and approaches performance of DAPG(State).
-
-  4. FERM : A competing baseline; shows good initial, but unstable, progress in a few tasks and often saturates in performance before exhausting our computational budget (40 hours/ task/ seed).
