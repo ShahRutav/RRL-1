@@ -9,7 +9,7 @@ from PIL import Image
 import numpy as np
 import torch
 
-_mj_envs = {'pen-v0', 'hammer-v0', 'door-v0', 'relocate-v0'}
+_mj_envs = {'pen-v0', 'hammer-v0', 'door-v0', 'relocate-v0', 'door-vis-dis-v0', 'hammer-vis-dis-v0'}
 
 def make_encoder(encoder, encoder_type, device, is_eval=True) :
     if not encoder :
@@ -68,9 +68,9 @@ class RRL(gym.Env, ABC):
 
         if self.env_id == 'pen-v0':
             qp = qp[:-6]
-        elif self.env_id == 'door-v0':
+        elif self.env_id == 'door-v0' or self.env_id == 'door-vis-dis-v0' :
             qp = qp[4:-2]
-        elif self.env_id == 'hammer-v0':
+        elif self.env_id == 'hammer-v0' or self.env_id == 'hammer-vis-dis-v0':
             qp = qp[2:-7]
         elif self.env_id == 'relocate-v0':
             qp = qp[6:-6]
